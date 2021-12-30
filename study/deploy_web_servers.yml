@@ -25,10 +25,10 @@
       regexp: {{ item.regexp }}
       line: {{ item.line }}
     loop:
-      - { regexp: '^(.*)listen ' line: 'listen = /run/php/php7.4-fpm.sock' }
-      - { regexp: '^(.*)listen.user ' line: 'listen.user = www-data' }
-      - { regexp: '^(.*)listen.group ' line: 'listen.group = www-data' }
-      - { regexp: '^(.*)listen.mode ' line: 'listen.mode = 0660' }
+      - { regexp: '^(.*)listen ', line: 'listen = /run/php/php7.4-fpm.sock' }
+      - { regexp: '^(.*)listen.user ', line: 'listen.user = www-data' }
+      - { regexp: '^(.*)listen.group ', line: 'listen.group = www-data' }
+      - { regexp: '^(.*)listen.mode ', line: 'listen.mode = 0660' }
 #hello!
 #
 #
