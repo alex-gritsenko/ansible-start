@@ -1,0 +1,21 @@
+[ansible_server]
+  ansible_srv		ansible_host=192.168.77.200
+
+[freedom]
+  freedom		ansible_host=freedom.virtlab.space
+
+[web_proxy_servers]
+  ansible-01		ansible_host=192.168.77.201
+
+[web_servers]
+  ansible-02		ansible_host=192.168.77.202
+  ansible-03		ansible_host=192.168.77.203
+
+[ALL_web_servers:children]
+  web_proxy_servers
+  web_servers
+
+[ALL_ubuntu_servers:children]
+  ansible_server
+  web_proxy_servers
+  web_servers

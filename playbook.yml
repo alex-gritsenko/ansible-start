@@ -1,0 +1,17 @@
+---
+- name: Update repos and install some packs
+  hosts: ALL_ubuntu_servers
+  become: yes
+
+  tasks:
+
+  - name: Update all packages to the latest version
+    apt:
+      upgrade: dist
+
+  - name: Update repositories cache and install package
+    apt:
+      name:
+      - tree
+      - net-tools
+      update_cache: yes

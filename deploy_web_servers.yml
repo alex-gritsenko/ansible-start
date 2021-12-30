@@ -1,0 +1,31 @@
+---
+- name: Install nginx + php-fpm module
+  hosts: web_servers
+  become: yes
+
+  tasks:
+  - name: Install nginx
+    apt: name=nginx state=latest update_cache=yes
+
+  - name: Start and enable nginx
+    ansible.builtin.systemd: name=nginx.service state=started enabled=yes
+
+  - name: Install php-fpm
+    apt: name=php-fpm state=latest update_cache=yes
+
+  - name: Install php modules
+    apt:
+     name: ['php-curl','php-memcached','php-mysql','php-pgsql','php-gd','php-imagick','php-intl','php-mbstring','php-xml','php-zip','php-json']
+     state: latest
+     update_cache: yes
+
+  - name: Configure php-fpm socket
+    lineinfile:
+      path: /etc/php/7.4/fpm/php-fpm.conf
+      regexp: {{ item.regexp }}
+      line: {{ item.line }}
+    loop:
+      - { regexp: '^(.*)listen ' line: 'listen = /run/php/php7.4-fpm.sock' }
+      - { regexp: '^(.*)listen.user ' line: 'listen.user = www-data' }
+      - { regexp: '^(.*)listen.group ' line: 'listen.group = www-data' }
+      - { regexp: '^(.*)listen.mode ' line: 'listen.mode = 0660' }
