@@ -4,8 +4,8 @@
   become: yes
 
   tasks:
-  - name: Install samba smb-client
-    apt: name=samba,smb-client state=latest update_cache=yes
+  - name: Install samba
+    apt: name=samba state=latest update_cache=yes
 
   - name: Start and enable samba
     ansible.builtin.systemd: name=samba.service state=started enabled=yes
