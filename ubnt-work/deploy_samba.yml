@@ -20,8 +20,7 @@
       group: root
       mode: '0644'
       backup: yes
-      notify:
-        - Restart samba server
+
   handlers:
   - name: Restart samba server
-    ansible.builtin.systemd: name=samba.service state=restarted enabled=yes
+    ansible.builtin.systemd: name=smbd state=restarted enabled=yes
