@@ -1,0 +1,2 @@
+[samba_server]
+  ubnt-work  ansible_host=127.0.0.1
