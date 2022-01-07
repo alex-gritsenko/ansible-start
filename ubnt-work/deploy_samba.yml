@@ -8,7 +8,7 @@
     apt: name=samba state=latest update_cache=yes
 
   - name: Start and enable samba
-    ansible.builtin.systemd: name=samba.service state=started enabled=yes
+    ansible.builtin.systemd: name=smbd state=started enabled=yes
   - name: Config samba_server
     ansible.builtin.template:
       vars:
