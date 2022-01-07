@@ -9,3 +9,19 @@
 
   - name: Start and enable samba
     ansible.builtin.systemd: name=samba.service state=started enabled=yes
+  - name: Config samba_server
+    ansible.builtin.template:
+      vars:
+        var_workgroup: 'WORKGROUP'
+        var_allow_guests: 'no'
+      src: templates/smb.conf.j2
+      dest: /etc/samba.smb.conf
+      owner: root
+      group: root
+      mode: '0644'
+      backup: yes
+      notify:
+        - Restart samba server
+  handlers:
+    name: Restart samba server
+    ansible.builtin.systemd: name=samba.service state=restarted enabled=yes

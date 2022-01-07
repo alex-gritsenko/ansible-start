@@ -1,0 +1,11 @@
+[{{ var_share_name | default('Shared') }}]
+comment = Samba Share
+path = {{ var_share_path }}
+guest ok = {{ var_guest_ok | default('no') }}
+browsable = {{ var_browsable | default('yes') }}
+writable = {{ var_writable | default('yes') }}
+read only = {{ var_read_only | default('no') }}
+create mask = {{ var_mask | default('0700') }}
+directory mask = {{ var_dir_mask | default('0700') }}
+inherit permissions = {{ var_inherit_permissions | default('yes') }}
+inherit acls = {{ var_inherit_acls | default('yes') }}
