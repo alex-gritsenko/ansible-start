@@ -10,10 +10,10 @@
   - name: Start and enable samba
     ansible.builtin.systemd: name=smbd state=started enabled=yes
   - name: Config samba_server
+    vars:
+      var_workgroup: 'WORKGROUP'
+      var_allow_guests: 'no'
     ansible.builtin.template:
-      vars:
-        var_workgroup: 'WORKGROUP'
-        var_allow_guests: 'no'
       src: templates/smb.conf.j2
       dest: /etc/samba.smb.conf
       owner: root
