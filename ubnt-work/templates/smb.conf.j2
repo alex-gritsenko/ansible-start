@@ -12,4 +12,4 @@
    passwd chat = *Enter\snew\s*\spassword:* %n\n *Retype\snew\s*\spassword:* %n\n *password\supdated\ssuccessfully* .
    pam password change = yes
    map to guest = bad user
-   usershare allow guests = {{ var_allow_guests | default('yes') }}
+   usershare allow guests = {{ var_allow_guests | default('no') }}
